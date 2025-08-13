@@ -100,10 +100,16 @@ public class HaplotypeCallerArgumentCollection extends AssemblyBasedCallerArgume
     public List<FeatureInput<VariantContext>> comps = new ArrayList<>();
 
     /**
-     * Applies a multiplier to log-likelihoods for ALT-supporting reads when computing genotype likelihoods for active region selection.
+     * Applies a multiplier to up-weight ALT-supporting reads when computing
+     * genotype likelihoods for active region selection. As an example, a value
+     * of 2 would effectively result in each ALT-supporting read being counted
+     * twice during active region detection. A value of 1.5 would similarly weight
+     * ALT-supporting reads 50% more than REF-supporting reads during active
+     * region detection. Values above 1 will lead to more regions being declared
+     * active, while values below 1 will decrease the number of regions being declared active.
      */
     @Advanced
-    @Argument(fullName = ACTIVE_REGION_ALT_MULTIPLIER, doc = "Multiplier for log-likelihood applied in active region determination when encountering ALT-supporting read", optional = true)
+    @Argument(fullName = ACTIVE_REGION_ALT_MULTIPLIER, doc = "Multiplier for up-weighting ALT-supporting reads during active region determination", optional = true)
     public double activeRegionAltMultiplier = 1;
 
     /**
