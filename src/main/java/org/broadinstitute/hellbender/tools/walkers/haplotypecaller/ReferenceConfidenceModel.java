@@ -498,7 +498,7 @@ public class ReferenceConfidenceModel {
             result.refDepth++;
         }
 
-        double readWeight = isAlt ? altReadWeight : 1.0;
+        final double readWeight = isAlt ? altReadWeight : 1.0;
         // Homozygous likelihoods don't need the logSum trick.
         result.genotypeLikelihoods[0] += readWeight * (referenceLikelihood + log10Ploidy);
         result.genotypeLikelihoods[likelihoodCount - 1] += readWeight * (nonRefLikelihood + log10Ploidy);
